@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc.Formatters;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -19,6 +21,15 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "menu",
+   pattern: "menu/{day:alpha=today}",
+   defaults: new
+   {
+       controller = "menu",
+       action = "show"
+   });
 
 app.MapControllerRoute(
     name: "default",
