@@ -1,0 +1,27 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Dish 
+
+
+<div class="card mb-3">
+    <div class="card-body">
+        <h5 class="card-title">
+            @Model.Name
+            @if (Model.IsSpicy)
+            {
+                <span class="badge bg-danger">Spicy</span>
+            }
+           
+        </h5>
+        <p class="card-text mb-0">
+            $@Model.Price.ToString("N0")
+            <a class="btn btn-sm btn-outline-primary"
+               asp-controller="Menu" asp-action="Order"
+               asp-route-id="@Model.Id">Order</a>
+        </p>
+    </div>
+</div>
+

@@ -3,11 +3,28 @@
 *@
 @{
 }
+
 <h1>Menu for @ViewBag.Day</h1>
-<ul>
-    @foreach (string each_special in ViewBag.Specials)
+@if (Model.Count == 0)
+{
+    <p>No specials today. Come back tomorrow.</p>
+}
+else
+{
+    int spicy_count = 0;
+    foreach (Dish each_dish in Model)
     {
-        <li>@each_special</li>
+        if (each_dish.IsSpicy) { spicy_count++; }
+        
     }
-</ul>
-<p> Every plate: $@ViewBag.Price</p>
+    <p>@Model.Count specials, @spicy_count spicy</p>
+}
+
+@model List<Dish>
+@foreach (Dish each_dish in Model)
+{
+<partial
+    name = "_DishCard"
+    model= "each_dish"
+/>
+}
